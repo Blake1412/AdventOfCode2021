@@ -6,14 +6,14 @@ import java.util.Scanner;
 
 
 public class Day02 {
-    List<String> directions = new ArrayList<>();
+    List<Direction> directions = new ArrayList<>();
     List<Integer> magnitudes = new ArrayList<>();
 
     public Day02() throws FileNotFoundException {
         Scanner scan = new Scanner(new File("data.txt"));
         while (scan.hasNext()) {
             String[] values = scan.nextLine().split(" ");
-            directions.add(values[0]);
+            directions.add(Direction.valueOf(values[0]));
             magnitudes.add(Integer.parseInt(values[1]));
         }
     }
@@ -22,13 +22,13 @@ public class Day02 {
         int horizontalPos = 0, depth = 0;
 
         for (int i = 0; i < directions.size(); i++) {
-            String direction = directions.get(i);
+            Direction command = directions.get(i);
             int magnitude = magnitudes.get(i);
 
-            switch (direction) {
-                case "forward" -> horizontalPos += magnitude;
-                case "down" -> depth += magnitude;
-                case "up" -> depth -= magnitude;
+            switch (command) {
+                case forward -> horizontalPos += magnitude;
+                case down -> depth += magnitude;
+                case up -> depth -= magnitude;
             }
         }
         return horizontalPos * depth;
@@ -38,18 +38,24 @@ public class Day02 {
         int horizontalPos = 0, depth = 0, aim = 0;
 
         for (int i = 0; i < directions.size(); i++) {
-            String direction = directions.get(i);
+            Direction command = directions.get(i);
             int magnitude = magnitudes.get(i);
 
-            switch (direction) {
-                case "forward" -> {
+            switch (command) {
+                case down -> aim += magnitude;
+                case up -> aim -= magnitude;
+                case forward -> {
                     horizontalPos += magnitude;
                     depth += magnitude * aim;
                 }
-                case "down" -> aim += magnitude;
-                case "up" -> aim -= magnitude;
             }
         }
         return horizontalPos * depth;
+    }
+
+    enum Direction {
+        up,
+        down,
+        forward
     }
 }
