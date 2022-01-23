@@ -9,7 +9,7 @@ public class Day01 {
     public Day01() throws FileNotFoundException {
         Scanner scan = new Scanner(new File("data.txt"));
         while (scan.hasNext()) {
-            measurements.add(Integer.parseInt(scan.nextLine()));
+            measurements.add(scan.nextInt());
         }
     }
 
