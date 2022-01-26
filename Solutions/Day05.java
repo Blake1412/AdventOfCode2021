@@ -31,8 +31,7 @@ public class Day05 {
                 for (int y = Math.min(y1, y2); y <= Math.max(y1, y2); y++) {
                     map[x1][y]++;
                 }
-            }
-            if (y1 == y2) {
+            } else if (y1 == y2) {
                 for (int x = Math.min(x1, x2); x <= Math.max(x1, x2); x++) {
                     map[x][y1]++;
                 }
