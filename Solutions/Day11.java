@@ -26,12 +26,7 @@ public class Day11 {
     }
 
     private int flash(int x, int y, boolean[][] flashed) {
-        int flashes = 0;
-
-        if (flashed[x][y]) {
-            return 0;
-        }
-        flashes++;
+        int flashes = 1;
         flashed[x][y] = true;
         grid[x][y] = 0;
         for (int dx = -1; dx <= 1; dx++) {
